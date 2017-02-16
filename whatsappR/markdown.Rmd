@@ -1,3 +1,8 @@
+---
+output:
+  html_document: default
+  pdf_document: default
+---
 # Generating a wordcloud based on the data generated from your Whatsapp chats.
 
 ### Prerequisites-
