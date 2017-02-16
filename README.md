@@ -34,6 +34,6 @@ The cloud was generated in the following way:
 library(wordcloud)
 ```
 ```{r echo = FALSE}
-wordcloud(whatsappDF$V5, random.order = FALSE, max.words = 100)
+wordcloud(whatsappDF$V5, random.order = FALSE, max.words = 100, col = brewer.pal(7,"Accent"))
 ```
-
+![Wordcloud](https://github.com/starship9/whatsappR/blob/master/whatsappR/senderCloud.png)
