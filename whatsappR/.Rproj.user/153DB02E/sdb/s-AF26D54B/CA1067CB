@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1487261550692.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "CA1067CB",
+    "lastKnownWriteTime" : 4294967295,
+    "last_content_update" : 1487261550692,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "7057035C",
+        "caption" : "whatsappMax",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=whatsappMax&cache_key=7057035C",
+        "displayedObservations" : 1223,
+        "environment" : "",
+        "object" : "whatsappMax",
+        "preview" : 0,
+        "totalObservations" : 1223,
+        "variables" : 15
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}
