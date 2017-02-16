@@ -36,4 +36,4 @@ library(wordcloud)
 ```{r echo = FALSE}
 wordcloud(whatsappDF$V5, random.order = FALSE, max.words = 100)
 ```
-
+![Wordcloud](https://github.com/starship9/whatsappR/blob/master/whatsappR/senderCloud.png)
