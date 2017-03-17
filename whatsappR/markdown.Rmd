@@ -19,7 +19,7 @@ output:
 - Replace the path given here with your desired path.
 
 ```{r echo = FALSE}
-whatsappRaw <- read.table("WhatsApp Chat with CSE Junior Year.txt", header=FALSE,fill = TRUE)
+whatsappRaw <- read.table("INSERT_FILE_HERE.txt", header=FALSE,fill = TRUE)
 ```
 
 
