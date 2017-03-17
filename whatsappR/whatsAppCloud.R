@@ -18,6 +18,6 @@ newData<-select(whatsappDF,V6:V20)
 
 newData<-unite(newData, combineData, V6:V20,sep = " ", remove = TRUE)
 newData$combineData<-gsub('\\d+', '', newData$combineData)
-wordcloud(newData$combineData, random.order = FALSE, max.words = 100, col = brewer.pal(7,"Accent"))
+wordcloud(newData$combineData, random.order = FALSE, max.words = 100, col = brewer.pal(10,"Set3"))
 
 
