@@ -113,66 +113,49 @@ wordcloud(
 
 text <-
   readLines(
-    "C:/Users/Nishank/Desktop/SNU/RStuff/whatsappR/whatsappR/WhatsApp Chat with Shambhavi V.txt"
+    "C:/Users/Nishank/Desktop/SNU/RStuff/whatsappR/whatsappR/WhatsApp Chat with CSE.txt"
   )
 head(text)
 tail(text)
-textDF <- as.data.frame(text)
+#textDF <- as.data.frame(text)
 library(tidyverse)
 library(tidytext)
-names(textDF)
-textDF %>% unnest_tokens(tokens, text)
+#names(textDF)
+#textDF %>% unnest_tokens(tokens, text)
 textChat <-
   readLines(
-    "C:/Users/Nishank/Desktop/SNU/RStuff/whatsappR/whatsappR/WhatsApp Chat with Shambhavi V.txt"
+    "C:/Users/Nishank/Desktop/SNU/RStuff/whatsappR/whatsappR/WhatsApp Chat with CSE.txt"
   )
-textDF <- data.frame(text = textChat)
-textDF %>% unnest_tokens(tokens, text)
-textDF$text
-textDF %>% unnest_tokens(tokens, text)
-textDF %>% unnest_tokens(text, token)
-?unnest_tokens
 textDF <- data_frame(text = textChat)
+textDF %>% unnest_tokens(tokens, text)
+#textDF$text
+#textDF %>% unnest_tokens(tokens, text)
+#textDF %>% unnest_tokens(text, token)
+#?unnest_tokens
+#textDF <- data_frame(text = textChat)
 textDF
-textDF %>% unnest_tokens(word, text)
+#textDF %>% unnest_tokens(word, text)
 textDF %>% unnest_tokens(word, text) %>% anti_join(stop_words)
-tidyWA <- textDF %>% count(word, sort = TRUE)
-tidyWA <-
-  textDF %>% unnest_tokens(word, text) %>% anti_join(stop_words)
+#tidyWA <- textDF %>% count(word, sort = TRUE)
+ tidyWA <-
+   textDF %>% unnest_tokens(word, text) %>% anti_join(stop_words)
 tidyWA %>% count(word, sort = TRUE)
-tidyWA %>% inner_join(get_sentiments("bing")) %>% count(word, sentiment, sort = TRUE) %>% acast(word ~
-                                                                                                  sentiment, value.var = "n", fill = 0) %>% comparison.cloud(
-                                                                                                    colors = c("#F8766D", "#00BFC4"),
-                                                                                                    max.words = 100,
-                                                                                                    scale = c(3, 0.5)
-                                                                                                  )
-library(wordcloud)
 library(reshape2)
+library(wordcloud)
 tidyWA %>% inner_join(get_sentiments("bing")) %>% count(word, sentiment, sort = TRUE) %>% acast(word ~
                                                                                                   sentiment, value.var = "n", fill = 0) %>% comparison.cloud(
                                                                                                     colors = c("#F8766D", "#00BFC4"),
                                                                                                     max.words = 100,
-                                                                                                    scale = c(3, 0.5)
+                                                                                                    scale = c(4, 0.5)
                                                                                                   )
-tidyWA %>% inner_join(get_sentiments("bing")) %>% count(word, sentiment, sort = TRUE) %>% acast(word ~
-                                                                                                  sentiment, value.var = "n", fill = 0) %>% comparison.cloud(
-                                                                                                    colors = c("#F8766D", "#00BFC4"),
-                                                                                                    max.words = 100,
-                                                                                                    scale = c(2, 0.25)
-                                                                                                  )
-tidyWA %>% inner_join(get_sentiments("bing")) %>% count(word, sentiment, sort = TRUE) %>% acast(word ~
-                                                                                                  sentiment, value.var = "n", fill = 0) %>% comparison.cloud(
-                                                                                                    colors = c("#F8766D", "#00BFC4"),
-                                                                                                    max.words = 100,
-                                                                                                    scale = c(2, 0.5)
-                                                                                                  )
-pdf("comparisonSV.pdf")
+
+pdf("comparisonCSE.pdf")
 print(
   tidyWA %>% inner_join(get_sentiments("bing")) %>% count(word, sentiment, sort = TRUE) %>% acast(word ~
                                                                                                     sentiment, value.var = "n", fill = 0) %>% comparison.cloud(
                                                                                                       colors = c("#F8766D", "#00BFC4"),
                                                                                                       max.words = 100,
-                                                                                                      scale = c(2, 0.5)
+                                                                                                      scale = c(3, 0.5)
                                                                                                     )
 )
 dev.off()
