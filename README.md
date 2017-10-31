@@ -32,3 +32,8 @@ library(wordcloud)
 wordcloud(whatsappDF$V5, random.order = FALSE, max.words = 100, col = brewer.pal(7,"Accent"))
 ```
 ![Wordcloud](https://github.com/starship9/whatsappR/blob/master/whatsappR/senderCloud.png)
+![Sentiment Cloud](https://github.com/starship9/whatsappR/blob/master/whatsappR/comparisonCloud.PNG)
+
+### TODO:
+
+- Create a shiny web app
