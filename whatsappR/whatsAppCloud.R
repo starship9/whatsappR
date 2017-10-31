@@ -2,7 +2,7 @@ setwd("C:/Users/Nishank/Desktop/SNU/RStuff/whatsappR/whatsappR")
 
 whatsappRaw <-
   read.table(
-    "WhatsApp Chat with Shambhavi V.txt",
+    "WhatsApp Chat with CSE.txt",
     header = FALSE,
     fill = TRUE,
     stringsAsFactors = FALSE
@@ -142,9 +142,10 @@ textDF %>% unnest_tokens(word, text) %>% anti_join(stop_words)
 tidyWA %>% count(word, sort = TRUE)
 library(reshape2)
 library(wordcloud)
+library(RColorBrewer)
 tidyWA %>% inner_join(get_sentiments("bing")) %>% count(word, sentiment, sort = TRUE) %>% acast(word ~
                                                                                                   sentiment, value.var = "n", fill = 0) %>% comparison.cloud(
-                                                                                                    colors = c("#F8766D", "#00BFC4"),
+                                                                                                    colors = brewer.pal(9,"RdGy"),
                                                                                                     max.words = 100,
                                                                                                     scale = c(4, 0.5)
                                                                                                   )
