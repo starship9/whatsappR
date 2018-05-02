@@ -26,12 +26,24 @@ Selecting only the names of the recipients (the data frame is loaded in the form
 select(whatsappDF,V5)
 ```
 
-The cloud was generated in the following way:
+The wordcloud of the words present in the chat was generated in the following way:
 ``` R
 library(wordcloud)
 wordcloud(whatsappDF$V5, random.order = FALSE, max.words = 100, col = brewer.pal(7,"Accent"))
 ```
 ![Wordcloud](https://github.com/starship9/whatsappR/blob/master/whatsappR/senderCloud.png)
+
+The sentiment comparison cloud of the words present in the chat was generated in the following way:
+``` R
+tidyWA %>% inner_join(get_sentiments("bing")) %>% count(word, sentiment, sort = TRUE) %>% acast(word ~
+                                                                                                    sentiment, value.var = "n", fill = 0) %>% comparison.cloud(
+                                                                                                      colors = c("#F8766D", "#00BFC4"),
+                                                                                                      max.words = 100,
+                                                                                                      scale = c(3, 0.5)
+                                                                                                    )
+)
+```
+
 ![Sentiment Cloud](https://github.com/starship9/whatsappR/blob/master/whatsappR/comparisonCloud.PNG)
 
 ### TODO:
