@@ -104,9 +104,10 @@ wordcloud(
 )
 
 library(reshape2)
-whatsappDFUnite %>% unnest_tokens(word,text) %>% anti_join(stop_words) %>%  inner_join(get_sentiments("bing")) %>% count(word, sentiment, sort = TRUE) %>% acast(word ~
+whatsappDFUnite %>% unnest_tokens(word,text) %>% anti_join(stop_words) %>%  filter(word!="happy") %>% inner_join(get_sentiments("bing")) %>% count(word, sentiment, sort = TRUE) %>% acast(word ~
                                                                                                         sentiment, value.var = "n", fill = 0) %>% comparison.cloud(
-                                                                                                          colors = brewer.pal(9, "YlOrRd"),
+                                                                                                          colors = brewer.pal(9, "Dark2"),
                                                                                                           max.words = 100,
-                                                                                                          scale = c(3, 0.75)
+                                                                                                          scale = c(2.5, 0.5)
                                                                                                         )
+
