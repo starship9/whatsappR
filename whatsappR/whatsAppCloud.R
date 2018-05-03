@@ -82,7 +82,7 @@ whatsappTidy <- left_join(whatsappTidy, totalWords)
 whatsappTidy
 
 whatsappTidy <- whatsappTidy %>% bind_tf_idf(word, Name, n)
-whatsappTidy
+whatsappTidy <- whatsappTidy %>% filter(!word %in% c("happy","birthday","junaid","omitted","media"))
 
 whatsappTidy %>% select(-total) %>% arrange(desc(tf_idf))
 
@@ -95,7 +95,7 @@ set.seed(100)
 par(bg = "black")
 wordcloud(
   whatsappTidy$word,
-  max.words = 150,
+  max.words = 100,
   min.freq = 1000,
   random.order = FALSE,
   random.color = FALSE,
@@ -106,8 +106,16 @@ wordcloud(
 library(reshape2)
 whatsappDFUnite %>% unnest_tokens(word,text) %>% anti_join(stop_words) %>%  filter(word!="happy") %>% inner_join(get_sentiments("bing")) %>% count(word, sentiment, sort = TRUE) %>% acast(word ~
                                                                                                         sentiment, value.var = "n", fill = 0) %>% comparison.cloud(
-                                                                                                          colors = brewer.pal(9, "Dark2"),
+                                                                                                          colors = brewer.pal(8, "Dark2"),
                                                                                                           max.words = 100,
                                                                                                           scale = c(2.5, 0.5)
                                                                                                         )
-
+par(bg="black")
+wordcloud(
+  whatsappTidy$Name,
+  min.freq = 100,
+  random.order = FALSE,
+  random.color = FALSE,
+  scale = c(3, 0.5),
+  colors = brewer.pal(9, "PuBuGn")
+)
