@@ -8,7 +8,7 @@ whatsappRaw <-
     stringsAsFactors = FALSE
   )
 tail(whatsappRaw)
-sample(whatsappRaw, 3)
+#sample(whatsappRaw, 3)
 head(whatsappRaw)
 str(whatsappRaw)
 
@@ -71,8 +71,9 @@ View(whatsappDFUnite)
 
 colnames(whatsappDFUnite) <- c("Name", "text")
 whatsappTidy <-
-  whatsappDFUnite %>% unnest_tokens(word, text)  %>% anti_join(stop_words) %>% count(Name, word, sort = TRUE) %>% ungroup()
+  whatsappDFUnite %>% unnest_tokens(word, text)  %>% anti_join(stop_words) %>%  count(Name,word,sort = TRUE) %>% ungroup()%>% filter(!word %in% c("happy","birthday","junaid","omitted","media")) #%>% filter(is.na(as.numeric(word)))
 
+#whatsappTidy <- whatsappTidy %>% filter(is.na(as.numeric(word)))
 head(whatsappTidy)
 tail(whatsappTidy)
 
@@ -82,7 +83,7 @@ whatsappTidy <- left_join(whatsappTidy, totalWords)
 whatsappTidy
 
 whatsappTidy <- whatsappTidy %>% bind_tf_idf(word, Name, n)
-whatsappTidy <- whatsappTidy %>% filter(!word %in% c("happy","birthday","junaid","omitted","media"))
+#whatsappTidy <- whatsappTidy %>% filter(!word %in% c("happy","birthday","junaid","omitted","media"))
 
 whatsappTidy %>% select(-total) %>% arrange(desc(tf_idf))
 
@@ -105,11 +106,11 @@ wordcloud(
 
 library(reshape2)
 whatsappDFUnite %>% unnest_tokens(word,text) %>% anti_join(stop_words) %>%  filter(word!="happy") %>% inner_join(get_sentiments("bing")) %>% count(word, sentiment, sort = TRUE) %>% acast(word ~
-                                                                                                        sentiment, value.var = "n", fill = 0) %>% comparison.cloud(
-                                                                                                          colors = brewer.pal(8, "Dark2"),
-                                                                                                          max.words = 100,
-                                                                                                          scale = c(2.5, 0.5)
-                                                                                                        )
+                                                                                                                                                                                             sentiment, value.var = "n", fill = 0) %>% comparison.cloud(
+                                                                                                                                                                                               colors = brewer.pal(8, "Dark2"),
+                                                                                                                                                                                               max.words = 100,
+                                                                                                                                                                                               scale = c(2.5, 0.5)
+                                                                                                                                                                                             )
 par(bg="black")
 wordcloud(
   whatsappTidy$Name,
