@@ -118,5 +118,5 @@ wordcloud(
   random.order = FALSE,
   random.color = FALSE,
   scale = c(3, 0.5),
-  colors = brewer.pal(9, "PuBuGn")
+  colors = brewer.pal(11, "RdYlBu")
 )
