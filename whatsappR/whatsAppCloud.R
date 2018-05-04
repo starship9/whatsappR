@@ -1,4 +1,8 @@
 setwd("C:/Users/Nishank/Desktop/SNU/RStuff/whatsappR/whatsappR")
+library(tidyverse)
+library(tidytext)
+library(wordcloud)
+library(RColorBrewer)
 
 whatsappRaw <-
   read.table(
@@ -29,8 +33,6 @@ whatsappRaw$V7[whatsappRaw$V7 == "removed" |
                  whatsappRaw$V7 == "changed"] <- ""
 whatsappRaw$V7[!is.na(as.numeric(whatsappRaw$V7))] <- ""
 
-library(tidyverse)
-library(tidytext)
 
 whatsappDF <- whatsappRaw %>% select(V5:V18)
 View(whatsappDF)
@@ -90,8 +92,7 @@ whatsappTidy %>% select(-total) %>% arrange(desc(tf_idf))
 whatsappTidy %>% arrange(desc(tf_idf)) %>% mutate(word = factor(word, levels = rev(unique(word)))) %>% group_by(Name) %>% top_n(5) %>% ungroup %>% ggplot(aes(word, tf_idf, fill = Name)) +
   geom_col(show.legend = FALSE) + labs(x = NULL, y = "tf-idf") + facet_wrap( ~
                                                                                Name, ncol = 5, scales = "free") + coord_flip()
-library(wordcloud)
-library(RColorBrewer)
+
 set.seed(100)
 par(bg = "black")
 wordcloud(
@@ -107,7 +108,7 @@ wordcloud(
 library(reshape2)
 whatsappDFUnite %>% unnest_tokens(word,text) %>% anti_join(stop_words) %>%  filter(word!="happy") %>% inner_join(get_sentiments("bing")) %>% count(word, sentiment, sort = TRUE) %>% acast(word ~
                                                                                                                                                                                              sentiment, value.var = "n", fill = 0) %>% comparison.cloud(
-                                                                                                                                                                                               colors = brewer.pal(8, "Dark2"),
+                                                                                                                                                                                               colors = brewer.pal(9, "Set1"),
                                                                                                                                                                                                max.words = 100,
                                                                                                                                                                                                scale = c(2.5, 0.5)
                                                                                                                                                                                              )
